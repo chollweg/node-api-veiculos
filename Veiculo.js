@@ -1,3 +1,4 @@
+require("dotenv").config();
 class Veiculo {
   constructor(_id, placa, ano, modelo, fabricante) {
     (this._id = _id), (this.placa = placa), (this.ano = ano);
