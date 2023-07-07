@@ -22,7 +22,7 @@ app.get("/veiculos", async (req, res) => {
 app.get("/veiculos/:id", async (req, res) => {
   const db = require("./db");
   let id = req.params.id;
-  let resp = await db.findOne("veiculos", id);
+  let resp = await db.findOne(process.env.DB_COLLECTION, id);
   res.send(resp);
 });
 
@@ -44,7 +44,7 @@ app.post("/veiculos", async (req, res) => {
 app.delete("/veiculos/:id", async (req, res) => {
   const db = require("./db");
   let id = req.params.id;
-  let resp = await db.deleteOne("veiculos", id);
+  let resp = await db.deleteOne(process.env.DB_COLLECTION, id);
   res.send(resp);
 });
 

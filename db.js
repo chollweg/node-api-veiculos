@@ -4,13 +4,11 @@ let singleton;
 let connect = async () => {
   if (singleton) return singleton;
 
-  const client = new MongoClient(
-    "mongodb+srv://cassiohollweg1:RvRwh7LKtZVEjoyM@cluster0.nstsqzg.mongodb.net/?retryWrites=true&w=majority"
-  );
+  const client = new MongoClient(process.env.DB_URL);
 
   await client.connect();
 
-  singleton = client.db("loja");
+  singleton = client.db(process.env.DB_NAME);
 
   return singleton;
 };
@@ -43,7 +41,7 @@ let deleteOne = async (collection, _id) => {
 let updateOne = async (param, object) => {
   const db = await connect();
   return await db
-    .collection("veiculos")
+    .collection(process.env.DB_COLLECTION)
     .updateOne({ placa: param }, { $set: object });
 };
 
