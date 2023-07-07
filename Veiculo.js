@@ -6,12 +6,12 @@ class Veiculo {
 
   static async listarVeiculos() {
     const db = require("./db");
-    return await db.findAll("veiculos");
+    return await db.findAll(process.env.DB_COLLECTION);
   }
 
   async cadastrarVeiculo() {
     const db = require("./db");
-    let resp = await db.insertOne("veiculos", this);
+    let resp = await db.insertOne(process.env.DB_COLLECTION, this);
     this._id = resp.x;
   }
 }
